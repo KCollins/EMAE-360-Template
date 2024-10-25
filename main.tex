@@ -13,6 +13,7 @@
 \usepackage{graphicx}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 
+
 % Packages for TODO List
 \usepackage{enumitem,amssymb}
 \newlist{todolist}{itemize}{2}
@@ -36,6 +37,7 @@
 \usepackage{pgfgantt}
 \usepackage{datetime} 
 \usepackage{tikz}
+\usepackage{pgfplots} % for tikz
 \usetikzlibrary{shapes.geometric, arrows}
 \def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
 
@@ -111,6 +113,46 @@
 Your introduction goes here! Simply start writing your document and use the Recompile button to view the updated PDF preview. Examples of commonly used commands and features are listed below, to help you get started.
 
 Once you're familiar with the editor, you can find various project settings in the Overleaf menu, accessed via the button in the very top left of the editor. To view tutorials, user guides, and further documentation, please visit our \href{https://www.overleaf.com/learn}{help library}, or head to our plans page to \href{https://www.overleaf.com/user/subscription/plans}{choose your plan}.
+
+\begin{figure}
+    \centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel=Complexity of Document,
+    ylabel=Time Spent Typesetting,
+    legend pos=north west,
+    xticklabels={\textit{Text Document}, \textit{Team Report}, \textit{Thesis}},
+    xtick={1,2,3},
+    yticklabels={,,},
+    axis x line=bottom,
+    axis y line=left,
+    ]
+
+    \addplot[color=red, mark=x] coordinates {
+        (1, 1)
+        (2, 3)
+        (3, 6)
+    };
+    \addlegendentry{Word}
+
+    \addplot[color=blue, mark=o] coordinates {
+        (1, 2)
+        (2, 2.5)
+        (3, 3)
+    };
+    \addlegendentry{\LaTeX{}}
+
+    \foreach \x in {1,2,3} {
+        \draw[densely dotted] (\x,0) -- (\x,\pgfkeysvalueof{/pgfplots/ymax});
+        \node[below, rotate=45, anchor=north east] at (\x,0) {\textit{\pgfkeysvalueof{/pgfplots/xticklabels}[\x]}};
+    }
+\end{axis}
+\end{tikzpicture}
+
+
+    \caption{Why you might want to use \LaTeX for this sort of project.}
+    \label{fig:whylatex}
+\end{figure}
 
 \section{Goals and Objectives}
 
@@ -274,6 +316,7 @@ denote their mean. Then as $n$ approaches infinity, the random variables $\sqrt{
 \newacronym{lcm}{LCM}{Least Common Multiple}
 \newacronym{nasa}{NASA}{National Aeronautics and Space Administration}
 \newacronym{lqtm}{LQTM}{Laughing Quietly To Myself}
+\newacronym{wysiwyg}{WYSIWYG}{What You See Is What You Get}
 
 
 
@@ -418,7 +461,7 @@ See \url{https://www.overleaf.com/learn/latex/Code_listing} for further guidance
 
 \subsection{Using TikZ}
 \label{sec:tikz}
-You can use \href{https://texample.net//tikz/examples/}{TikZ} to create editable flowcharts and images that include cross-references. Note that this section is referenced in Figure \ref{fig:tikz1}.
+You can use \href{https://texample.net//tikz/examples/}{TikZ} to create editable flowcharts and images that include cross-references. Note that this section is referenced in Figure \ref{fig:tikz1}. You can create tikz code in a \acrshort{wysiwyg} form on \url{mathcha.io}. Your computing language of choice may also have an option to export figures in tikz format. 
 
 \begin{figure}
     \centering
@@ -454,6 +497,10 @@ You can use \href{https://texample.net//tikz/examples/}{TikZ} to create editable
     \caption{Unwieldy code? You can \texttt{$\backslash$include} it in a separate file. }
     \label{fig:tikz2}
 \end{figure}
+
+\subsection{Pandoc}
+If you already have code in Markdown or another format, consider using \href{https://pandoc.org/demos.html}{pandoc} to convert it. Very useful!
+
 
 
 \subsection{Good luck!}
