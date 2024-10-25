@@ -45,6 +45,15 @@
 \usepackage{wrapfig}
 \usepackage{graphicx}
 
+% Compilably visible comments
+% Indexing comments:
+\usepackage{xcolor}
+\usepackage{imakeidx}
+\makeindex[title=Notes,columns=1]
+
+\newcommand{\KCnote}[1]{{\textcolor{blue}{[KC: #1 \index{\thepage @ #1}]}}} %Visible comments with indexing
+
+
 % ORCID: 
 \usepackage{academicons}
 \usepackage{tikz}
@@ -106,6 +115,8 @@
 \newpage
 
 \section*{Executive Summary}
+Hello world!
+\KCnote{Hello world!}
 \newpage
 
 \section{Introduction}
@@ -509,5 +520,8 @@ We hope you find Overleaf useful, and do take a look at our \href{https://www.ov
 
 \bibliographystyle{alpha}
 \bibliography{sample}
+
+\newpage
+\printindex
 
 \end{document}
