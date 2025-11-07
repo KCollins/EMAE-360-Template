@@ -129,45 +129,7 @@ Your introduction goes here! Simply start writing your document and use the Reco
 
 Once you're familiar with the editor, you can find various project settings in the Overleaf menu, accessed via the button in the very top left of the editor. To view tutorials, user guides, and further documentation, please visit our \href{https://www.overleaf.com/learn}{help library}, or head to our plans page to \href{https://www.overleaf.com/user/subscription/plans}{choose your plan}.
 
-\begin{figure}
-    \centering
-\begin{tikzpicture}
-\begin{axis}[
-    xlabel=Complexity of Document,
-    ylabel=Time Spent Typesetting,
-    legend pos=north west,
-    xticklabels={\textit{Text Document}, \textit{Team Report}, \textit{Thesis}},
-    xtick={1,2,3},
-    yticklabels={,,},
-    axis x line=bottom,
-    axis y line=left,
-    ]
-
-    \addplot[color=red, mark=x] coordinates {
-        (1, 1)
-        (2, 3)
-        (3, 6)
-    };
-    \addlegendentry{Word}
-
-    \addplot[color=blue, mark=o] coordinates {
-        (1, 2)
-        (2, 2.5)
-        (3, 3)
-    };
-    \addlegendentry{\LaTeX{}}
-
-    \foreach \x in {1,2,3} {
-        \draw[densely dotted] (\x,0) -- (\x,\pgfkeysvalueof{/pgfplots/ymax});
-        \node[below, rotate=45, anchor=north east] at (\x,0) {\textit{\pgfkeysvalueof{/pgfplots/xticklabels}[\x]}};
-    }
-\end{axis}
-\end{tikzpicture}
-
-
-    \caption{Why you might want to use \LaTeX for this sort of project.}
-    \label{fig:whylatex}
-\end{figure}
+\include{figs/tikz/whylatex.tex}
 
 \section{Goals and Objectives}
 
@@ -264,7 +226,10 @@ today rule/.style=%
   \begin{wrapfigure}{l}{25mm} 
     \includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{figs/Vishner_N_20220311102144_443511.jpg}
   \end{wrapfigure}\par
-  \textbf{Radar O'Reilly (Team Lead)\orcid{0000-0002-9846-8247}} is a fictional character in the M*A*S*H novels, film, the television series, the television pilot W*A*L*T*E*R and two episodes of the series After M*A*S*H. He was played by Gary Burghoff, and was one of only two actors to play a role in the 1970 film and then reprise their role for television; the other actor was G. Wood, who portrayed General Hammond, though he was just a recurring character in Season 1.\par \textit{Consider supplementing your summary with \url{https://www.elsevier.com/researcher/author/policies-and-guidelines/credit-author-statement}. Also, consider signing up for an ORCID at \url{orcid.org}.}
+  \textbf{Radar O'Reilly (Team Lead)
+  % \orcid{0000-0002-9846-8247}
+  \orcid{0009-0004-7387-3897}
+  } is a fictional character in the M*A*S*H novels, film, the television series, the television pilot W*A*L*T*E*R and two episodes of the series After M*A*S*H. He was played by Gary Burghoff, and was one of only two actors to play a role in the 1970 film and then reprise their role for television; the other actor was G. Wood, who portrayed General Hammond, though he was just a recurring character in Season 1.\par \textit{Consider supplementing your summary with \url{https://www.elsevier.com/researcher/author/policies-and-guidelines/credit-author-statement}. Also, consider signing up for an ORCID at \url{orcid.org}.}
 
 
 \newpage
@@ -385,6 +350,8 @@ Gadgets & 13
 \caption{\label{tab:widgets}An example table.}
 \end{table}
 
+A good approach is to go to \url{https://www.tablesgenerator.com} and copy in a table you've made in Excel. It will format it in LaTeX for you.
+
 \subsection{How to add Comments and Track Changes}
 
 Comments can be added to your project by highlighting some text and clicking ``Add comment'' in the top right of the editor pane. To view existing comments, click on the Review menu in the toolbar above. To reply to a comment, click on the Reply button in the lower right corner of the comment. You can close the Review pane by clicking its name on the toolbar when you're done reviewing for the time being.
@@ -478,37 +445,11 @@ See \url{https://www.overleaf.com/learn/latex/Code_listing} for further guidance
 \label{sec:tikz}
 You can use \href{https://texample.net//tikz/examples/}{TikZ} to create editable flowcharts and images that include cross-references. Note that this section is referenced in Figure \ref{fig:tikz1}. You can create tikz code in a \acrshort{wysiwyg} form on \url{mathcha.io}. Your computing language of choice may also have an option to export figures in tikz format. 
 
-\begin{figure}
-    \centering
-
-\begin{tikzpicture}[node distance=2cm,
-    every node/.style={draw, rectangle, rounded corners, align=center},
-    process/.style={fill=blue!30},
-    decision/.style={diamond, fill=green!30},
-    io/.style={trapezium, fill=yellow!30},
-    terminal/.style={ellipse, fill=red!30}]
-
-  \node[process] (start) {Start};
-  \node[decision, below of=start] (dec1) {Condition};
-  \node[process, right of=dec1, xshift=3cm] (true) {True Action \ref{sec:tikz}};
-  \node[process, below of=dec1] (false) {False Action};
-  \node[terminal, below of=false] (end) {End};
-
-  \path[->] (start) edge (dec1);
-  \path[->] (dec1) edge node[above] {Yes} (true);
-  \path[->] (dec1) edge node[below] {No} (false);
-  \path[->] (true) edge (end);
-  \path[->] (false) edge (end);
-
-\end{tikzpicture}
-
-    \caption{Example TikZ figure. Code autogenerated by Google Gemini.}
-    \label{fig:tikz1}
-\end{figure}
+\include{figs/tikz/exampleflowchart}
 
 \begin{figure}
     \centering
-    \include{pikachu.tex}
+    \include{figs/tikz/pikachu}
     \caption{Unwieldy code? You can \texttt{$\backslash$include} it in a separate file. }
     \label{fig:tikz2}
 \end{figure}

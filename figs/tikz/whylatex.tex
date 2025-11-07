@@ -1,0 +1,39 @@
+\begin{figure}
+    \centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel=Complexity of Document,
+    ylabel=Time Spent Typesetting,
+    legend pos=north west,
+    xticklabels={\textit{Text Document}, \textit{Team Report}, \textit{Thesis}},
+    xtick={1,2,3},
+    yticklabels={,,},
+    axis x line=bottom,
+    axis y line=left,
+    ]
+
+    \addplot[color=red, mark=x] coordinates {
+        (1, 1)
+        (2, 3)
+        (3, 6)
+    };
+    \addlegendentry{Word}
+
+    \addplot[color=blue, mark=o] coordinates {
+        (1, 2)
+        (2, 2.5)
+        (3, 3)
+    };
+    \addlegendentry{\LaTeX{}}
+
+    \foreach \x in {1,2,3} {
+        \draw[densely dotted] (\x,0) -- (\x,\pgfkeysvalueof{/pgfplots/ymax});
+        \node[below, rotate=45, anchor=north east] at (\x,0) {\textit{\pgfkeysvalueof{/pgfplots/xticklabels}[\x]}};
+    }
+\end{axis}
+\end{tikzpicture}
+
+
+    \caption{Why you might want to use \LaTeX for this sort of project.}
+    \label{fig:whylatex}
+\end{figure}
