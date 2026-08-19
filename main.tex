@@ -30,6 +30,14 @@
 \makeglossaries
 \renewcommand{\glossarysection}[2][]{} % no title
 
+% Packages for equation list
+ \usepackage{tocloft}
+ %%gmedina solution
+ \newcommand{\listequationsname}{List of Equations}
+ \newlistof{myequations}{equ}{\listequationsname}
+ \newcommand{\myequations}[1]{%
+ \addcontentsline{equ}{myequations}{\protect\numberline{\theequation}#1}\par}
+
 % Package for booktabs table
 \usepackage{booktabs}
 
@@ -117,13 +125,18 @@
 \section*{Executive Summary}
 Hello world!
 \KCnote{Hello world!}
-This concept is elucidated in \cite{elmquist_2024}.
+This concept is elucidated in \cite{elmquist_2024}, but it's summarized much better in \cite{NIKAM20082743}.
 
 \newpage
 
 \section{Introduction}
-
+\label{sec:intro}
 Your introduction goes here! Simply start writing your document and use the Recompile button to view the updated PDF preview. Examples of commonly used commands and features are listed below, to help you get started. 
+
+\begin{equation}
+\label{eqn:example-eqn}
+    x^2+2 = 7
+\end{equation}
 
 
 
@@ -132,6 +145,8 @@ Once you're familiar with the editor, you can find various project settings in t
 \include{figs/tikz/whylatex.tex}
 
 \section{Goals and Objectives}
+Our goal is to illustrate that Equation \ref{eqn:example-eqn} is in Section \ref{sec:intro}.
+
 
 \newpage
 \section{Scope}
@@ -279,6 +294,7 @@ denote their mean. Then as $n$ approaches infinity, the random variables $\sqrt{
 \section{List of Equations}
 \textit{Note that you can reference an equation if you want to. Like this: Equation \ref{eqn:emc2}! Equation \ref{eqn:foo}! The numbering will automatically update.}
 
+
 \begin{equation}
     \label{eqn:emc2}
     e = mc^2
@@ -337,7 +353,7 @@ Note that your figure will automatically be placed in the most appropriate place
 \end{figure}
 
 \subsection{How to add Tables}
-
+% This text will not appear when I recompile.
 Use the table and tabular environments for basic tables --- see Table~\ref{tab:widgets}, for example. For more information, please see this help article on \href{https://www.overleaf.com/learn/latex/tables}{tables}. 
 
 \begin{table}
@@ -364,11 +380,15 @@ You can make lists with automatic numbering \dots
 
 \begin{enumerate}
 \item Like this,
+\begin{enumerate}
+    \item or subitems....
+\end{enumerate}
 \item and like this.
 \end{enumerate}
 \dots or bullet points \dots
 \begin{itemize}
 \item Like this,
+
 \item and like this.
 \end{itemize}
 
@@ -456,7 +476,7 @@ You can use \href{https://texample.net//tikz/examples/}{TikZ} to create editable
 
 \subsection{Including documents}
 You can include things:
-\include{chapters/example-section}
+\include{chapters/example-section}. You can reference things in included documents, like Equation \ref{eqn:included-eqn}.
 
 \subsection{Pandoc}
 If you already have code in Markdown or another format, consider using \href{https://pandoc.org/demos.html}{pandoc} to convert it. Very useful!
